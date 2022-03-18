@@ -61,7 +61,18 @@ try{
 
     $mysqli = new Mysql($db);
     if($mysqli->connected()){
-       echo 'База данных подключена';
+        echo 'База данных подключена<br>';
+        $result = $mysqli->newQuery('SELECT * FROM user');
+        if($result){
+            foreach ($result as $row) {
+                foreach ($row as $value){
+                    echo $value . ' ';
+                }
+                echo '<br>';
+            }
+        }else{
+            echo 'Результат запроса отрицательный';
+        }
     }
 } catch(Exception $e){
     echo $e->getMessage();

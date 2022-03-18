@@ -19,4 +19,12 @@ class MySql extends mysqli
     public function connected(){
         return $this->connect;
     }
+
+    public function newQuery($sql)
+    {
+        if (is_string($sql)){
+            return parent::query($sql);
+        }
+        throw new Exception(' Запрос не является строкой');
+    }
 }
